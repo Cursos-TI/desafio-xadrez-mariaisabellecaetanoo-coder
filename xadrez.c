@@ -1,83 +1,140 @@
 #include <stdio.h>
 
+// ==================================================
+// FUNÇÃO RECURSIVA - TORRE
+// Move 5 casas para a direita
+// ==================================================
+void moverTorre(int casas) {
+
+    // Condição de parada
+    if(casas == 0) {
+        return;
+    }
+
+    printf("Direita\n");
+
+    // Chamada recursiva
+    moverTorre(casas - 1);
+}
+
+// ==================================================
+// FUNÇÃO RECURSIVA - RAINHA
+// Move 8 casas para a esquerda
+// ==================================================
+void moverRainha(int casas) {
+
+    // Condição de parada
+    if(casas == 0) {
+        return;
+    }
+
+    printf("Esquerda\n");
+
+    // Chamada recursiva
+    moverRainha(casas - 1);
+}
+
+// ==================================================
+// FUNÇÃO RECURSIVA - BISPO
+// Movimento diagonal: cima + direita
+// Também utiliza loops aninhados
+// ==================================================
+void moverBispo(int casas) {
+
+    // Condição de parada
+    if(casas == 0) {
+        return;
+    }
+
+    int vertical;
+    int horizontal;
+
+    // Loop externo -> movimento vertical
+    for(vertical = 1; vertical <= 1; vertical++) {
+
+        // Loop interno -> movimento horizontal
+        for(horizontal = 1; horizontal <= 1; horizontal++) {
+
+            printf("Cima Direita\n");
+        }
+    }
+
+    // Chamada recursiva
+    moverBispo(casas - 1);
+}
+
 int main() {
 
-    // Quantidade de casas que cada peça irá mover
+    // Quantidade de movimentos
     int casasTorre = 5;
     int casasBispo = 5;
     int casasRainha = 8;
 
-    // Movimento do cavalo
-    int movimentosBaixo = 2;
-    int movimentosEsquerda = 1;
+    // Variáveis do cavalo
+    int movimentosCima = 2;
+    int movimentosDireita = 1;
 
     int i;
     int j;
 
     // ======================================
-    // Movimento da Torre usando FOR
-    // Torre: 5 casas para a direita
+    // MOVIMENTO DA TORRE
     // ======================================
     printf("Movimento da Torre:\n");
 
-    for(i = 1; i <= casasTorre; i++) {
-        printf("Direita\n");
-    }
+    moverTorre(casasTorre);
 
     printf("\n");
 
     // ======================================
-    // Movimento do Bispo usando WHILE
-    // Bispo: 5 casas na diagonal
-    // para cima e à direita
+    // MOVIMENTO DO BISPO
     // ======================================
     printf("Movimento do Bispo:\n");
 
-    i = 1;
-
-    while(i <= casasBispo) {
-        printf("Cima Direita\n");
-        i++;
-    }
+    moverBispo(casasBispo);
 
     printf("\n");
 
     // ======================================
-    // Movimento da Rainha usando DO-WHILE
-    // Rainha: 8 casas para a esquerda
+    // MOVIMENTO DA RAINHA
     // ======================================
     printf("Movimento da Rainha:\n");
 
-    i = 1;
-
-    do {
-        printf("Esquerda\n");
-        i++;
-    } while(i <= casasRainha);
+    moverRainha(casasRainha);
 
     printf("\n");
 
     // ======================================
-    // Movimento do Cavalo usando
-    // loops aninhados (FOR + WHILE)
+    // MOVIMENTO DO CAVALO
+    // Movimento em "L":
+    // 2 casas para cima
+    // 1 casa para a direita
     //
-    // Cavalo:
-    // 2 casas para baixo
-    // 1 casa para a esquerda
+    // Utilizando loops aninhados,
+    // múltiplas variáveis,
+    // continue e break
     // ======================================
     printf("Movimento do Cavalo:\n");
 
-    // Loop FOR para mover para baixo
-    for(i = 1; i <= movimentosBaixo; i++) {
-        printf("Baixo\n");
-    }
+    // Loop externo
+    for(i = 1; i <= movimentosCima; i++) {
 
-    // Loop WHILE para mover para a esquerda
-    j = 1;
+        // Exibe movimento para cima
+        printf("Cima\n");
 
-    while(j <= movimentosEsquerda) {
-        printf("Esquerda\n");
-        j++;
+        // Controle com continue
+        if(i < movimentosCima) {
+            continue;
+        }
+
+        // Loop interno
+        for(j = 1; j <= movimentosDireita; j++) {
+
+            printf("Direita\n");
+
+            // Controle com break
+            break;
+        }
     }
 
     return 0;
